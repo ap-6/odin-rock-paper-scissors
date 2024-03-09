@@ -59,8 +59,8 @@ function playGame() {
 
         roundResult = playRound(computerChoice, playerChoice);
 
-        alert(outputRoundResults(computerChoice, playerChoice, 
-                                 roundResult, count));
+        alert(getRoundResults(computerChoice, playerChoice, 
+                              roundResult, count));
 
         //adjust scores based on roundResult string
         if (roundResult[4] === "w") 
@@ -69,10 +69,10 @@ function playGame() {
             computerScore++;
     }
 
-    return outputGameResults(computerScore, playerScore);
+    return getGameResults(computerScore, playerScore);
 }
 
-function outputRoundResults(computerChoice, playerChoice, roundResult, roundCount) { 
+function getRoundResults(computerChoice, playerChoice, roundResult, roundCount) { 
     let output = "Round " + roundCount + ": ";
     output += "\nComputer choice: " + computerChoice;
     output += "\nPlayer choice: " + playerChoice;
@@ -81,7 +81,7 @@ function outputRoundResults(computerChoice, playerChoice, roundResult, roundCoun
     return output;
 }
 
-function outputGameResults(computerScore, playerScore) {
+function getGameResults(computerScore, playerScore) {
     if (playerScore > computerScore) { //player wins
         return "You win the game! You scored " + playerScore + 
                " and the computer scored " + computerScore + ".";
