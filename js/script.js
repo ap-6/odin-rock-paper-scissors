@@ -1,5 +1,5 @@
 function getComputerChoice() {
-    let computerChoice = Math.floor(Math.random() * 3);
+    let computerChoice = Math.floor(Math.random() * 3); //random number between 0-2
     if (computerChoice === 0)
         return "rock";
     else if (computerChoice === 1)
@@ -42,7 +42,7 @@ function checkPlayerChoice(playerChoice) { //ensures player input is valid
         return false;
 }
 
-function playGame(playRoundFunction) {
+function playGame() {
     let playerScore = 0;
     let computerScore = 0;
     let roundResult;
@@ -92,6 +92,6 @@ function outputGameResults(computerScore, playerScore) {
         return "You tied the game! You both scored " + playerScore + "."
 }
 
-alert(playGame(playRound));
+alert(playGame());
 
 
