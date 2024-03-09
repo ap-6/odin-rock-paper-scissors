@@ -16,10 +16,12 @@ function playRound(computerSelection, playerSelection) {
     else if ((computerSelection === "rock" && playerSelection === "scissors")
             ||(computerSelection === "paper" && playerSelection === "rock")
             ||(computerSelection === "scissors" && playerSelection === "paper"))
-        return "You lose the round! " + computerSelection + " beats " + playerSelection + ".";
+        return "You lose the round! " + computerSelection + " beats " + 
+                playerSelection + ".";
     //player wins
     else
-        return "You win the round! " + playerSelection + " beats " + computerSelection;
+        return "You win the round! " + playerSelection + " beats " + 
+                computerSelection;
 }
 
 function getPlayerChoice() {
@@ -28,7 +30,8 @@ function getPlayerChoice() {
 
     //ensure the input is valid 
     while (checkPlayerChoice(playerChoice) === false) { 
-        playerChoice = prompt("Invalid input. Try again. \nEnter one of the following: rock, paper, scissors.")
+        playerChoice = prompt("Invalid input. Try again. \n" + 
+                              "Enter one of the following: rock, paper, scissors.")
         playerChoice = playerChoice.toLowerCase();
     }
 
@@ -36,7 +39,9 @@ function getPlayerChoice() {
 }
 
 function checkPlayerChoice(playerChoice) { //ensures player input is valid
-    if ((playerChoice === "rock") || (playerChoice === "paper") || (playerChoice === "scissors"))
+    if ((playerChoice === "rock") || 
+        (playerChoice === "paper") || 
+        (playerChoice === "scissors"))
         return true;
     else
         return false;
@@ -49,28 +54,25 @@ function playGame() {
     
     //plays 5 rounds and keeps score
     for (let count = 1; count < 6; count++) {
-        //get choices for round
         let playerChoice = getPlayerChoice();
         let computerChoice = getComputerChoice();
 
-        //determine round winner
         roundResult = playRound(computerChoice, playerChoice);
 
-        //output round results
-        alert(outputRoundResults(computerChoice, playerChoice, roundResult, count));
+        alert(outputRoundResults(computerChoice, playerChoice, 
+                                 roundResult, count));
 
-        //adjust scores
-        if (roundResult[4] === "w") //player wins
+        //adjust scores based on roundResult string
+        if (roundResult[4] === "w") 
             playerScore++;
-        else if (roundResult[4] === "l") //player loses
+        else if (roundResult[4] === "l")
             computerScore++;
     }
-    
-    //compare final scores and outputs game results
+
     return outputGameResults(computerScore, playerScore);
 }
 
-function outputRoundResults(computerChoice, playerChoice, roundResult, roundCount) { //shows details of roun
+function outputRoundResults(computerChoice, playerChoice, roundResult, roundCount) { 
     let output = "Round " + roundCount + ": ";
     output += "\nComputer choice: " + computerChoice;
     output += "\nPlayer choice: " + playerChoice;
