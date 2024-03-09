@@ -1,0 +1,48 @@
+SET function getComputerChoice
+    SET choice to random number between 0-2
+    IF choice is 0
+        RETURN "rock"
+    ELSE IF choice is 1
+        RETURN "paper"
+    ELSE
+        RETURN "scissors"
+ENDFUNCTION
+
+SET function playRound that takes two string parameters: 
+computerSelection and playerSelection
+    //tie
+    IF computerSelection equals playerSelection
+        RETURN "Tie! Both players chose " playerSelection
+    //computer wins
+    IF computerSelection is "rock" and playerSelection is "scissors"
+    or computerSelection is "paper" and playerSelection is "rock"
+    or computerSelection is "scissors" and playerSelection is "paper"
+        RETURN "You lose the round! " computerSelection " beats " playerSelection
+    //player wins
+    IF playerSelection is "rock" and computerSelection is "scissors"
+    or playerSelection is "paper" and computerSelection is "rock"
+    or playerSelection is "scissors" and computerSelection is "paper"
+        RETURN "You win the round! " playerSelection " beats " computerSelection
+ENDFUNCTION
+
+SET function playGame
+    SET playerScore to 0
+    SET computerScore to 0
+    FOR 5 loops
+        CALL playRound
+            IF playRound's 5th letter is "w" //player wins
+                INCREMENT playerScore
+            ELSE IF playRound's 5th letter is "l" //player loses
+                INCREMENT computerScore
+    IF playerScore is greater than computerScore    
+        RETURN "You win the game! You scored " playerScore " and the computer scored " computerScore "."
+    ELSE IF computerScore is greater than playerScore   
+        RETURN "You lose the game! You scored " playerScore " and the computer scored " computerScore "."
+    ELSE
+        RETURN "You tied! You both scored " playerScore "."
+ENDFUNCTION
+    
+     
+
+
+
