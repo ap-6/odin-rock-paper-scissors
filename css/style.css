@@ -1,3 +1,20 @@
-div {
-    font-size: 50px;
+body {
+    text-align: left;
+    margin: 50px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(212, 212, 212);
 }
+
+ul {
+    list-style-type: none;
+}
+
+button {
+    margin: 10px;
+    padding: 6px 20px;
+}
+
+div {
+    font-size: 30px;
+}
+

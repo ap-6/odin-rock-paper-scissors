@@ -7,9 +7,29 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
     <body>
-        <div id="computerOutput"></div>
-        <div id="playerOutput"></div>
-        <div id="roundOutput"></div>
+        <h1>Rock, paper, scissors</h1>
+        <h2>Choose a shape:</h2>
+        <ul id="shape-list">
+            <li><button id="rock">rock</button></li>
+            <li><button id="paper">paper</button></li>
+            <li><button id="scissors">scissors</button></li>
+        </ul>
+
+        <div>
+            <div>Your choice: <span id="player-choice"></span></div>
+            <div>Computer choice: <span id="computer-choice"></span></div>
+            <br>
+            <div>Round <span id="round-count"></span>:</div>
+            <div id="round-outcome"></div>
+            <br>
+            <div>Player score: <span id="player-score">0</span></div>
+            <div>Computer score: <span id="computer-score">0</span></div>
+            <br>
+            <div>Game: <span id="game-outcome"></span></div>
+            <div id="restart-game"></div>
+        </div>
+
         <script src="js/script.js"></script>
+
     </body>
 </html>
