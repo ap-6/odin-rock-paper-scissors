@@ -66,7 +66,7 @@ function playGame() {
                 count++;
             }
             
-            //end game
+            //end game screen
             if (+playerScore.textContent === 5 || +computerScore.textContent === 5 
                 && count > 1) { //count condition is to prevent button spamming re-running this code
                 count = 1;
@@ -74,21 +74,17 @@ function playGame() {
                 
                 gameRestart.appendChild(gameRestartBtn);
 
-
                 gameRestartBtn.addEventListener("click", (event) => {
                     resetValues(playerChoice, computerChoice, roundOutcome, 
                                 playerScore, computerScore, roundCount, gameOutcome);
                     
                     while (gameRestart.children.length > 0) {
                         gameRestart.removeChild(gameRestart.firstChild);
-                    }
-                        
+                    }     
                 });
-            }
-                
+            }    
         }
     });
-
 }
 
 function resetValues(playerChoice, computerChoice, roundOutcome, 
@@ -98,7 +94,7 @@ function resetValues(playerChoice, computerChoice, roundOutcome,
     computerChoice.textContent = "";
     computerScore.textContent = 0;
     roundCount.textContent = 1;
-    roundOutcome.textContent = "";
+    roundOutcome.textContent = "First to 5 wins";
     gameOutcome.textContent = "";
 }
 
@@ -129,15 +125,13 @@ function getGameOutcome(playerScore, computerScore) {
     let computerScoreInt = +computerScore.textContent;
 
     if (playerScoreInt > computerScoreInt) { //player wins
-        return "You win the game! You scored " + playerScoreInt + 
-               " and the computer scored " + computerScoreInt + ".";
+        return "You win the game!";
     }
     else if (playerScoreInt < computerScoreInt) { //computer wins
-        return "You lose the game! You scored " + playerScoreInt + 
-               " and the computer scored " + computerScoreInt + ".";
+        return "You lose the game!";
     }
     else //tie
-        return "You tied the game! You both scored " + playerScoreInt + "."
+        return "You tied the game!";
 }
 
 function titleCase(text) {
