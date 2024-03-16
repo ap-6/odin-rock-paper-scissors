@@ -39,23 +39,21 @@ function getPlayerChoice(target){
 }
 
 function playGame() {
-    let shapeChoice = document.querySelector("#shape-list");
+    const shapeChoice = document.querySelector("#shape-list");
+    const playerChoice = document.querySelector("#player-choice");
+    const playerScore = document.querySelector("#player-score");
+    const computerChoice = document.querySelector("#computer-choice");
+    const computerScore = document.querySelector("#computer-score");
+    const roundOutcome = document.querySelector("#round-outcome");
+    const roundCount = document.querySelector("#round-count");
+    const gameOutcome = document.querySelector("#game-outcome");
+    const gameRestart = document.querySelector("#restart-game");
 
-    let playerChoice = document.querySelector("#player-choice");
-    let playerScore = document.querySelector("#player-score");
+    const gameRestartBtn = document.createElement("button");
+    gameRestartBtn.textContent = "Restart game";
 
-    let computerChoice = document.querySelector("#computer-choice");
-    let computerScore = document.querySelector("#computer-score");
-
-    let roundOutcome = document.querySelector("#round-outcome");
-    let roundCount = document.querySelector("#round-count");
     let count = 1;
     roundCount.textContent = count;
-    
-    let gameOutcome = document.querySelector("#game-outcome");
-    let gameRestartBtn = document.createElement("button");
-    gameRestartBtn.textContent = "Restart game";
-    let gameRestart = document.querySelector("#restart-game");
 
     shapeChoice.addEventListener("click", (event) => {
         let target = event.target;
@@ -63,25 +61,57 @@ function playGame() {
         if(target.tagName === "BUTTON") {
             //active game
             if (+playerScore.textContent < 5 && +computerScore.textContent < 5) { 
-                playerChoice.textContent = getPlayerChoice(target);
-                computerChoice.textContent = getComputerChoice();
-
-                roundOutcome.textContent = getRoundOutcome(computerChoice.textContent, 
-                                                        playerChoice.textContent);
-            
-                adjustScores(playerScore, computerScore, roundOutcome);
-                roundCount.textContent = ++count;
+                playRound(playerChoice, computerChoice, roundOutcome, 
+                          playerScore, computerScore, roundCount, count, target);
+                count++;
             }
+            
             //end game
-            if (+playerScore.textContent === 5 || +computerScore.textContent === 5) {
+            if (+playerScore.textContent === 5 || +computerScore.textContent === 5 
+                && count > 1) { //count condition is to prevent button spamming re-running this code
+                count = 1;
                 gameOutcome.textContent = getGameOutcome(playerScore, computerScore);
+                
                 gameRestart.appendChild(gameRestartBtn);
+
+
+                gameRestartBtn.addEventListener("click", (event) => {
+                    resetValues(playerChoice, computerChoice, roundOutcome, 
+                                playerScore, computerScore, roundCount, gameOutcome);
+                    
+                    while (gameRestart.children.length > 0) {
+                        gameRestart.removeChild(gameRestart.firstChild);
+                    }
+                        
+                });
             }
                 
         }
     });
 
-    
+}
+
+function resetValues(playerChoice, computerChoice, roundOutcome, 
+                    playerScore, computerScore, roundCount, gameOutcome) {
+    playerChoice.textContent = "";
+    playerScore.textContent = 0;
+    computerChoice.textContent = "";
+    computerScore.textContent = 0;
+    roundCount.textContent = 1;
+    roundOutcome.textContent = "";
+    gameOutcome.textContent = "";
+}
+
+function playRound(playerChoice, computerChoice, roundOutcome, 
+                   playerScore, computerScore, roundCount, count, target) {
+    playerChoice.textContent = getPlayerChoice(target);
+    computerChoice.textContent = getComputerChoice();
+
+    roundOutcome.textContent = getRoundOutcome(computerChoice.textContent, 
+                                            playerChoice.textContent);
+
+    adjustScores(playerScore, computerScore, roundOutcome);
+    roundCount.textContent = ++count;
 }
 
 function adjustScores(playerScore, computerScore, roundOutcome) {

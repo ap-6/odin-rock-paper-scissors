@@ -7,25 +7,37 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
     <body>
-        <h1>Rock, paper, scissors</h1>
-        <h2>Choose a shape:</h2>
-        <ul id="shape-list">
-            <li><button id="rock">rock</button></li>
-            <li><button id="paper">paper</button></li>
-            <li><button id="scissors">scissors</button></li>
-        </ul>
+        <div id="static">
+            <h1>Rock, paper, scissors</h1>
+            <h2>Choose a shape:</h2>
+            <ul id="shape-list">
+                <li><button id="rock">rock</button></li>
+                <li><button id="paper">paper</button></li>
+                <li><button id="scissors">scissors</button></li>
+            </ul>
+        </div>
 
         <div>
-            <div>Your choice: <span id="player-choice"></span></div>
-            <div>Computer choice: <span id="computer-choice"></span></div>
-            <br>
-            <div>Round <span id="round-count"></span>:</div>
-            <div id="round-outcome"></div>
-            <br>
-            <div>Player score: <span id="player-score">0</span></div>
-            <div>Computer score: <span id="computer-score">0</span></div>
-            <br>
-            <div>Game: <span id="game-outcome"></span></div>
+            <h2>Round <span id="round-count">1</span>:</h2>
+            <div id="round-outcome">First to 5 wins</div>
+            
+            <ul id="choice-container">            
+                <li class = "player-container">
+                    <div class="underline">Your choice: </div>
+                    <div id="player-choice"></div>
+                </li>
+                <li class="computer-container">
+                    <div class="underline">Computer choice: </div>
+                    <div id="computer-choice"></div>
+                </li>
+            </ul>
+
+            <div id="score-container">
+                <div>Player score: <span id="player-score">0</span></div>
+                <div>Computer score: <span id="computer-score">0</span></div>
+            </div>
+
+            <div><span id="game-outcome"></span></div>
             <div id="restart-game"></div>
         </div>
 
